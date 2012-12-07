@@ -5,7 +5,7 @@
 Summary:	An open source client for Apple Filing Protocol
 Name:		afpfs-ng
 Version:	0.8.1
-Release:	%mkrel 1
+Release:	2
 License:	GPLv2+
 Group:		Networking/File transfer
 URL:		http://sites.google.com/site/alexthepuffin/home
@@ -16,7 +16,7 @@ Patch11:	header-path-fix.patch
 Patch12:	include-headers-fix.patch
 BuildRequires:	fuse-devel
 BuildRequires:	readline-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	libgcrypt-devel
 
 %description
@@ -58,11 +58,7 @@ autoreconf -if
 %make
 
 %install
-%__rm -rf %{buildroot}
 %makeinstall_std
-
-%clean
-%__rm -rf %{buildroot}
 
 %files
 %doc docs/*.txt docs/README
@@ -76,7 +72,9 @@ autoreconf -if
 %files -n %{devname}
 %{_libdir}/*.so
 %{_includedir}/%{name}
-%if %{mdvver} < 201200
-%{_libdir}/*.la
-%endif
+
+%changelog
+* Mon Mar 26 2012 Andrey Bondrov <abondrov@mandriva.org> 0.8.1-1
++ Revision: 786885
+- imported package afpfs-ng
 
