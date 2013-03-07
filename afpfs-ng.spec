@@ -8,16 +8,17 @@ Version:	0.8.1
 Release:	2
 License:	GPLv2+
 Group:		Networking/File transfer
-URL:		http://sites.google.com/site/alexthepuffin/home
-Source:		http://sourceforge.net/projects/afpfs-ng/files/afpfs-ng/%{version}/afpfs-ng-%{version}.tar.bz2
+Url:		http://sites.google.com/site/alexthepuffin/home
+Source0:	http://sourceforge.net/projects/afpfs-ng/files/afpfs-ng/%{version}/afpfs-ng-%{version}.tar.bz2
 # patches from Debian:
 Patch10:	build-error-fixes.patch
 Patch11:	header-path-fix.patch
 Patch12:	include-headers-fix.patch
-BuildRequires:	fuse-devel
+
 BuildRequires:	readline-devel
+BuildRequires:	pkgconfig(fuse)
+BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(ncurses)
-BuildRequires:	libgcrypt-devel
 
 %description
 afpfs-ng is a client for the Apple Filing Protocol (AFP) which will let
@@ -67,14 +68,9 @@ autoreconf -if
 %{_mandir}/man1/*afp*.1*
 
 %files -n %{libname}
-%{_libdir}/*.so.%{major}*
+%{_libdir}/libafpclient.so.%{major}*
 
 %files -n %{devname}
 %{_libdir}/*.so
 %{_includedir}/%{name}
-
-%changelog
-* Mon Mar 26 2012 Andrey Bondrov <abondrov@mandriva.org> 0.8.1-1
-+ Revision: 786885
-- imported package afpfs-ng
 
