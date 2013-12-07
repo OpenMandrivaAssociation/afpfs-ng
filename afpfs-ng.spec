@@ -5,7 +5,7 @@
 Summary:	An open source client for Apple Filing Protocol
 Name:		afpfs-ng
 Version:	0.8.1
-Release:	4
+Release:	5
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://sites.google.com/site/alexthepuffin/home
