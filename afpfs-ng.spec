@@ -20,6 +20,8 @@ BuildRequires:	pkgconfig(fuse)
 BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(ncurses)
 
+BuildRequires:	gcc-c++, gcc, gcc-cpp
+
 %description
 afpfs-ng is a client for the Apple Filing Protocol (AFP) which will let
 you mount and access shared volumes from Mac OS X (or netatalk).
@@ -53,8 +55,12 @@ libafpclient, an Apple Filing Protocol (AFP) client library.
 %setup -q
 %apply_patches
 
+autoreconf -fiv
+
 %build
-autoreconf -if
+export CC=gcc
+export CXX=g++
+
 %configure2_5x --disable-static
 %make
 
