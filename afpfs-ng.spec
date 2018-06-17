@@ -4,16 +4,13 @@
 
 Summary:	An open source client for Apple Filing Protocol
 Name:		afpfs-ng
-Version:	0.8.1
-Release:	10
+Version:	0.8.2
+Release:	1
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://sites.google.com/site/alexthepuffin/home
-Source0:	http://sourceforge.net/projects/afpfs-ng/files/afpfs-ng/%{version}/afpfs-ng-%{version}.tar.bz2
-# patches from Debian:
-Patch10:	build-error-fixes.patch
-Patch11:	header-path-fix.patch
-Patch12:	include-headers-fix.patch
+# https://github.com/simonvetter/afpfs-ng
+Source0:	https://github.com/simonvetter/afpfs-ng/raw/master/afpfs-ng-%{version}.tar.gz
 
 BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(fuse)
@@ -52,16 +49,13 @@ This package contains the headers needed to compile programs that use
 libafpclient, an Apple Filing Protocol (AFP) client library.
 
 %prep
-%setup -q
-%apply_patches
-
+%autosetup -p1 -n %{name}
+touch README
+sed -i -e 's,identify.c,,' lib/Makefile.am
 autoreconf -fiv
 
 %build
-export CC=gcc
-export CXX=g++
-
-%configure2_5x --disable-static
+%configure --disable-static
 %make
 
 %install
