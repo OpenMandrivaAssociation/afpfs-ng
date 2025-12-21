@@ -12,6 +12,11 @@ Url:		https://sites.google.com/site/alexthepuffin/home
 # https://github.com/simonvetter/afpfs-ng
 Source0:	https://github.com/simonvetter/afpfs-ng/raw/master/afpfs-ng-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(fuse)
 BuildRequires:	pkgconfig(libgcrypt)
